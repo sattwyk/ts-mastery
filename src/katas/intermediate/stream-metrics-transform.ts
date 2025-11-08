@@ -10,7 +10,8 @@
  * Relevant docs: https://nodejs.org/docs/latest-v24.x/api/stream.html
  *
  * Tasks:
- *   1. Implement createJsonLineTransform that turns Buffer chunks into objects.
+ *   1. Implement createJsonLineTransform that turns Buffer chunks into objects
+ *      (hint: keep a `let leftover = ''` buffer between chunks to handle split lines).
  *   2. Implement createMetricsTransform that aggregates stats and pushes summaries.
  *   3. Wire everything in runPipeline using stream/promises.pipeline.
  */
@@ -25,6 +26,7 @@ export interface TelemetryEvent {
 
 export function createJsonLineTransform(): Transform {
   // TODO: implement a Transform that buffers partial lines and emits objects (objectMode)
+  // HINT: maintain `let leftover = ''` to accumulate incomplete lines between chunks
   throw new Error('Not implemented');
 }
 

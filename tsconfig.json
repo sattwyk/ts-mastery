@@ -13,6 +13,7 @@
     "resolvePackageJsonImports": true,
     "sourceMap": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "declarationMap": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,

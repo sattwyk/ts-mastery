@@ -39,6 +39,7 @@ export class DnsCache {
    *   - prefer caller-provided ttlMs but fall back to 2 minutes
    *   - if AbortSignal is aborted, reject with AbortError
    *   - dedupe concurrent requests using a Map<string, Promise<CacheEntry>>
+   *     (keyed the same way as the cache) so overlapping resolve() calls share work
    */
   async resolve(
     hostname: string,

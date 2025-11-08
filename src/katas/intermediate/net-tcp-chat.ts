@@ -8,6 +8,12 @@
  *   SAY <message>, and QUIT. Messages must be relayed to connected peers except
  *   the originator. Add timeouts for idle clients.
  *
+ * Protocol:
+ *   - `JOIN <nickname>\n` registers/updates a user's nickname (must precede SAY).
+ *   - `SAY <message>\n` broadcasts the message verbatim to all other sockets.
+ *   - `QUIT\n` ends the session gracefully.
+ *   - Unrecognized commands should elicit an error line and keep the socket alive.
+ *
  * Relevant docs: https://nodejs.org/docs/latest-v24.x/api/net.html
  *
  * Tasks:

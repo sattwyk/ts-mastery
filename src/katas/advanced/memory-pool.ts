@@ -8,6 +8,7 @@
  *   - hands out slices while tracking usage
  *   - reuses released slices
  *   - optionally auto-releases via FinalizationRegistry
+ *   - tracks slots via an array sorted by offset (no linked list required)
  */
 
 import { Buffer } from 'node:buffer';
@@ -52,9 +53,10 @@ export class BufferPool {
     throw new Error('Not implemented');
   }
 
-  /**
-   * Merge adjacent free slots to reduce fragmentation.
-   */
+/**
+ * Merge adjacent free slots to reduce fragmentation.
+ * Approach: iterate the slots array (already sorted by offset) and merge neighbors with free=true.
+ */
   compact(): void {
     // TODO
     throw new Error('Not implemented');

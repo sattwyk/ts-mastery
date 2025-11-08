@@ -19,6 +19,7 @@
  *   - fill in the TODOs for the functions below
  *   - keep the public function signatures intact; tests rely on them
  *   - avoid Buffer.concat inside tight loops; pre-allocate when possible
+ *   - validate flags against FLAG_MAP; unknown flags should cause the packet to reject
  */
 
 import { Buffer } from 'node:buffer';
@@ -45,7 +46,7 @@ const FLAG_MAP = {
  * Build a 4 byte header with the following rules:
  *   - throw if payloadLength is not in [0, 0xffff]
  *   - version must be clamped between 0-255
- *   - flags is an array of keys from FLAG_MAP
+ *   - flags is an array of keys from FLAG_MAP (throw Error if any flag is not a valid key)
  */
 export function buildHeader(
   payloadLength: number,
@@ -53,6 +54,7 @@ export function buildHeader(
   flags: Array<keyof typeof FLAG_MAP>,
 ): Buffer {
   // TODO: allocate a Buffer of length 4 and fill the bytes
+  // HINT: validate all flags exist in FLAG_MAP before processing, throw if unknown
   throw new Error('Not implemented');
 }
 

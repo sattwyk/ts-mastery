@@ -35,6 +35,8 @@ export class TypedEventBus<TEvents extends EventMap> {
   on(event: typeof TypedEventBus.WILDCARD, listener: Listener<WildcardEvent<TEvents>>): this;
   on(event: keyof TEvents | typeof TypedEventBus.WILDCARD, listener: Listener<unknown>): this {
     // TODO: delegate to EventEmitter while ensuring listener identity is tracked for off()
+    // HINT: Use a WeakMap<originalListener, wrappedListener> to track wrapper functions
+    // so that wildcard and normal handlers can be removed later without memory leaks.
     throw new Error('Not implemented');
   }
 

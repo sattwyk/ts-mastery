@@ -1,12 +1,13 @@
 /**
  * Kata: Crypto Sealed Box
  * Level: Intermediate
- * Topics: node:crypto, Ed25519 signing, XChaCha20-Poly1305 (via libsodium style), subtle crypto
+ * Topics: node:crypto, Ed25519 signing, AES-256-GCM encryption, subtle crypto
  *
  * Scenario:
  *   Implement helpers to sign payloads, verify signatures, and encrypt data with
- *   AES-256-GCM using the built-in `crypto` module. Practice handling Buffers vs
- *   Uint8Array and encoding/decoding base64url tokens.
+ *   AES-256-GCM using the built-in `crypto` module. Practice generating keys,
+ *   juggling Buffer vs Uint8Array, and encoding/decoding base64url tokens while
+ *   managing IVs + auth tags safely.
  *
  * Relevant docs: https://nodejs.org/docs/latest-v24.x/api/crypto.html
  *
