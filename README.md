@@ -8,7 +8,7 @@ Hands-on exercises that move from Node fundamentals (buffers, events) to advance
 2. Pick a kata from the catalog below.
 3. Open the file, read the scenario + tasks, and start replacing the `throw new Error('Not implemented')` placeholders.
 4. Use `pnpm tsx <path-to-kata>` to manually exercise the demo or create your own unit tests with `node:test`.
-5. Keep the official Node.js v24 docs handy: https://nodejs.org/docs/latest-v24.x/.
+5. Keep the official Node.js v24 docs handy: https://nodejs.org/docs/latest-v24.x/api/index.html.
 
 Example:
 
