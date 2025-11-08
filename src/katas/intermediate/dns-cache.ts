@@ -1,0 +1,59 @@
+/**
+ * Kata: DNS Cache Resolver
+ * Level: Intermediate
+ * Topics: dns/promises, caching, TTL handling, AbortController for timeouts
+ *
+ * Build a tiny resolver that:
+ *   - wraps `dns.promises.resolve4` and `resolve6`
+ *   - caches results based on hostname+rrtype
+ *   - respects TTL expiration
+ *   - supports cancellation via AbortSignal
+ */
+
+import { promises as dns } from 'node:dns';
+
+export type RecordType = 'A' | 'AAAA';
+
+export interface CacheEntry {
+  readonly expiresAt: number;
+  readonly addresses: readonly string[];
+}
+
+export interface ResolveOptions {
+  readonly signal?: AbortSignal;
+  readonly ttlMs?: number;
+}
+
+export class DnsCache {
+  private readonly store = new Map<string, CacheEntry>();
+
+  constructor(private readonly now: () => number = () => Date.now()) {}
+
+  private static cacheKey(hostname: string, rrtype: RecordType): string {
+    return `${rrtype}:${hostname.toLowerCase()}`;
+  }
+
+  /**
+   * Resolve a hostname and cache the result.
+   * Hints:
+   *   - prefer caller-provided ttlMs but fall back to 2 minutes
+   *   - if AbortSignal is aborted, reject with AbortError
+   *   - dedupe concurrent requests using a Map<string, Promise<CacheEntry>>
+   */
+  async resolve(
+    hostname: string,
+    rrtype: RecordType,
+    options: ResolveOptions = {},
+  ): Promise<readonly string[]> {
+    // TODO: implement cache lookup/fill
+    throw new Error('Not implemented');
+  }
+
+  /**
+   * Remove expired entries and return how many were pruned.
+   */
+  sweep(): number {
+    // TODO: iterate map, delete expired entries
+    throw new Error('Not implemented');
+  }
+}
