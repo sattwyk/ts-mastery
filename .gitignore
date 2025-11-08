@@ -64,3 +64,6 @@ temp/
 # JetBrains
 .idea/
 
+node-md
+
+doc.tsxt
