@@ -13,6 +13,8 @@
  *   - `SAY <message>\n` broadcasts the message verbatim to all other sockets.
  *   - `QUIT\n` ends the session gracefully.
  *   - Unrecognized commands should elicit an error line and keep the socket alive.
+ *   - Normalize CRLF line endings (`\r\n`) so Windows telnet/netcat clients work, e.g.
+ *       `buffer += chunk.toString('utf8').replace(/\r\n?/g, '\n');`
  *
  * Relevant docs: https://nodejs.org/docs/latest-v24.x/api/net.html
  *

@@ -11,7 +11,8 @@
  *
  * Tasks:
  *   1. Implement createJsonLineTransform that turns Buffer chunks into objects
- *      (hint: keep a `let leftover = ''` buffer between chunks to handle split lines).
+ *      (hint: keep a `let leftover = ''` buffer between chunks, set `decodeStrings: false`
+ *      so you can treat chunks as UTF-8 strings, and normalize CRLF before splitting).
  *   2. Implement createMetricsTransform that aggregates stats and pushes summaries.
  *   3. Wire everything in runPipeline using stream/promises.pipeline.
  */

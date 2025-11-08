@@ -8,6 +8,11 @@
  *   - caches results based on hostname+rrtype
  *   - respects TTL expiration
  *   - supports cancellation via AbortSignal
+ *
+ * Stretch ideas:
+ *   - Track hit/miss counters for observability
+ *   - Add negative caching for NXDOMAIN responses
+ *   - Support custom resolvers via dnsPromises.setServers()
  */
 
 import { promises as dns } from 'node:dns';
@@ -39,7 +44,8 @@ export class DnsCache {
    *   - prefer caller-provided ttlMs but fall back to 2 minutes
    *   - if AbortSignal is aborted, reject with AbortError
    *   - dedupe concurrent requests using a Map<string, Promise<CacheEntry>>
-   *     (keyed the same way as the cache) so overlapping resolve() calls share work
+   *     (keyed the same way as the cache) so overlapping resolve() calls share work;
+   *     always delete the entry once the promise settles to avoid memory leaks.
    */
   async resolve(
     hostname: string,

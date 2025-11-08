@@ -35,8 +35,10 @@ export class TypedEventBus<TEvents extends EventMap> {
   on(event: typeof TypedEventBus.WILDCARD, listener: Listener<WildcardEvent<TEvents>>): this;
   on(event: keyof TEvents | typeof TypedEventBus.WILDCARD, listener: Listener<unknown>): this {
     // TODO: delegate to EventEmitter while ensuring listener identity is tracked for off()
-    // HINT: Use a WeakMap<originalListener, wrappedListener> to track wrapper functions
-    // so that wildcard and normal handlers can be removed later without memory leaks.
+    // HINT: keep separate WeakMaps for normal vs wildcard listeners, e.g.
+    //   const wildcardMap = new WeakMap<Listener<WildcardEvent<T>>, Listener<unknown>>();
+    //   wildcardMap.set(userFn, wrappedFn);
+    // so off() can recover the wrapper you actually registered with EventEmitter.
     throw new Error('Not implemented');
   }
 
@@ -56,6 +58,8 @@ export class TypedEventBus<TEvents extends EventMap> {
 
   emit<K extends keyof TEvents>(event: K, payload: TEvents[K]): boolean {
     // TODO: emit event and also notify wildcard listeners
+    // NOTE: EventEmitter does not know about the wildcard symbol; you must emit the
+    // normal event *and* manually emit TypedEventBus.WILDCARD with { event, payload }.
     throw new Error('Not implemented');
   }
 

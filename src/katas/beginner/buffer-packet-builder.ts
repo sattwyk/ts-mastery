@@ -55,6 +55,7 @@ export function buildHeader(
 ): Buffer {
   // TODO: allocate a Buffer of length 4 and fill the bytes
   // HINT: validate all flags exist in FLAG_MAP before processing, throw if unknown
+  // NOTE: network protocols typically encode integers in big-endian ("network byte order").
   throw new Error('Not implemented');
 }
 

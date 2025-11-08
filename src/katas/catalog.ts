@@ -242,6 +242,42 @@ export const catalog: readonly Kata[] = [
     ],
   },
   {
+    id: 'async-context-tracer',
+    title: 'Async Context Tracer',
+    difficulty: 'intermediate',
+    topics: ['async_hooks', 'diagnostics'],
+    summary: 'Propagate request ids across async boundaries with AsyncLocalStorage and diagnostics_channel.',
+    entry: './src/katas/intermediate/async-context-tracer.ts',
+    estimatedTime: '35-45 min',
+    objectives: [
+      'Use AsyncLocalStorage to scope metadata per request',
+      'Broadcast lifecycle events over diagnostics_channel',
+      'Decorate loggers so context ids show up automatically',
+    ],
+    tips: [
+      'Reuse contexts for nested runWithContext calls',
+      'Prefer WeakMap to keep wrapper loggers from leaking',
+    ],
+  },
+  {
+    id: 'child-process-runner',
+    title: 'Child Process Sandbox Runner',
+    difficulty: 'intermediate',
+    topics: ['child_process', 'process', 'signals'],
+    summary: 'Run commands with timeouts, streaming logs, and signal-aware cleanup.',
+    entry: './src/katas/intermediate/child-process-runner.ts',
+    estimatedTime: '40-50 min',
+    objectives: [
+      'Spawn commands while capturing stdout/stderr streams',
+      'Enforce timeouts using AbortSignal and staged SIGTERM/SIGKILL',
+      'Short-circuit multi-step pipelines on failure',
+    ],
+    tips: [
+      'Respect maxBuffer or drop chunks deterministically',
+      'Hook process.on("SIGINT") to cancel running jobs when needed',
+    ],
+  },
+  {
     id: 'udp-heartbeat-monitor',
     title: 'UDP Heartbeat Monitor',
     difficulty: 'advanced',
@@ -290,6 +326,42 @@ export const catalog: readonly Kata[] = [
     tips: [
       'Keep a task id counter to correlate responses',
       'Listen for worker "error" and "exit" events',
+    ],
+  },
+  {
+    id: 'http2-push-cache',
+    title: 'HTTP/2 Push Cache',
+    difficulty: 'advanced',
+    topics: ['http2', 'tls', 'caching'],
+    summary: 'Serve assets over HTTP/2 with TLS + server push and fallback to HTTP/1.1.',
+    entry: './src/katas/advanced/http2-push-cache.ts',
+    estimatedTime: '45-60 min',
+    objectives: [
+      'Load TLS materials and configure ALPN negotiation',
+      'Warm an in-memory asset cache and invalidate on file changes',
+      'Use stream.pushStream to proactively send dependent assets',
+    ],
+    tips: [
+      'Remember to close push streams on error to avoid hanging clients',
+      'Guard against clients that do not advertise h2 support',
+    ],
+  },
+  {
+    id: 'clustered-signal-server',
+    title: 'Clustered Signal-Aware HTTP Server',
+    difficulty: 'advanced',
+    topics: ['cluster', 'http', 'signals'],
+    summary: 'Coordinate multi-process HTTP workers with graceful shutdown and rolling restarts.',
+    entry: './src/katas/advanced/clustered-signal-server.ts',
+    estimatedTime: '50-60 min',
+    objectives: [
+      'Fork workers per CPU and restart them when they crash',
+      'Handle SIGTERM and SIGUSR2 to implement graceful exit + rolling reloads',
+      'Collect worker metrics via IPC and render a dashboard',
+    ],
+    tips: [
+      'Use worker.on("message") to receive metrics snapshots',
+      'Throttle restarts to avoid respawn storms',
     ],
   },
   {

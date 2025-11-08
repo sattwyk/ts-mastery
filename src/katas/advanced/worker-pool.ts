@@ -51,6 +51,7 @@ export class WorkerPool {
 
   exec<TInput, TResult>(payload: TInput): Promise<TResult> {
     // TODO: pick worker, postMessage with task id, return promise
+    // NOTE: payload/results must be structured-cloneable (no functions, symbols, DOM nodes, etc.).
     throw new Error('Not implemented');
   }
 

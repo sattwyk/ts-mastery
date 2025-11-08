@@ -8,6 +8,18 @@
  * Functions to implement:
  *   - `fetchStatus` -> perform a single HTTPS GET with timeout + optional request body streaming.
  *   - `probeAll` -> run probes with limited concurrency, aggregate fastest success latency, etc.
+ *
+ * Snippet guidance for fetchStatus:
+ *   const chunks: Buffer[] = [];
+ *   let total = 0;
+ *   response.on('data', (chunk) => {
+ *     if (total < 200) {
+ *       chunks.push(chunk);
+ *       total += chunk.length;
+ *     }
+ *   });
+ *   await once(response, 'end');
+ *   const bodySnippet = Buffer.concat(chunks).subarray(0, 200).toString('utf8');
  */
 
 import { request } from 'node:https';

@@ -9,6 +9,9 @@
  *   - reuses released slices
  *   - optionally auto-releases via FinalizationRegistry
  *   - tracks slots via an array sorted by offset (no linked list required)
+ *
+ * ⚠️ Finalizers are best-effort: FinalizationRegistry callbacks are NOT guaranteed to
+ * run before process exit. Treat them as leak detectors only—call release() manually.
  */
 
 import { Buffer } from 'node:buffer';
@@ -39,6 +42,8 @@ export class BufferPool {
     enableFinalizer = false,
   ) {
     // TODO: allocate Buffer.alloc(capacity) and initialize slots
+    // Reminder: even if enableFinalizer=true, release() must be called manually; the
+    // runtime may skip finalizers during shutdown or under memory pressure.
     throw new Error('Not implemented');
   }
 
