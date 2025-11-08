@@ -37,11 +37,15 @@ pnpm cli
 | crypto-sealed-box        | Crypto Sealed Box        | Intermediate | `crypto`, signing, AES-GCM              | `src/katas/intermediate/crypto-sealed-box.ts`        |
 | stream-metrics-transform | Stream Metrics Transform | Intermediate | Node Streams, backpressure              | `src/katas/intermediate/stream-metrics-transform.ts` |
 | url-sanitizer            | URL Sanitizer            | Intermediate | WHATWG URL, URLPattern                  | `src/katas/intermediate/url-sanitizer.ts`            |
+| async-context-tracer     | Async Context Tracer     | Intermediate | AsyncLocalStorage, diagnostics_channel  | `src/katas/intermediate/async-context-tracer.ts`     |
+| child-process-runner     | Child Process Sandbox Runner | Intermediate | child_process, signals                  | `src/katas/intermediate/child-process-runner.ts`     |
 | https-health-check       | HTTPS Health Check       | Advanced     | HTTPS, streaming, concurrency           | `src/katas/advanced/https-health-check.ts`           |
 | event-loop-lab           | Event Loop Lab           | Advanced     | Event loop, microtasks                  | `src/katas/advanced/event-loop-lab.ts`               |
 | memory-pool              | Buffer Pool + Finalizer  | Advanced     | Memory management, FinalizationRegistry | `src/katas/advanced/memory-pool.ts`                  |
 | udp-heartbeat-monitor    | UDP Heartbeat Monitor    | Advanced     | UDP, dgram                              | `src/katas/advanced/udp-heartbeat-monitor.ts`        |
 | timer-wheel              | Timer Wheel Scheduler    | Advanced     | Timers, scheduling                      | `src/katas/advanced/timer-wheel.ts`                  |
+| http2-push-cache         | HTTP/2 Push Cache        | Advanced     | HTTP/2, TLS, caching                    | `src/katas/advanced/http2-push-cache.ts`             |
+| clustered-signal-server  | Clustered Signal-Aware HTTP Server  | Advanced     | cluster, signals                        | `src/katas/advanced/clustered-signal-server.ts`      |
 | worker-pool              | Worker Thread Pool       | Advanced     | Worker threads, pooling                 | `src/katas/advanced/worker-pool.ts`                  |
 | web-streams-adapter      | Web Streams Adapter      | Advanced     | Web Streams, fetch                      | `src/katas/advanced/web-streams-adapter.ts`          |
 
